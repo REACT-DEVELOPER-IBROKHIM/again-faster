@@ -1,0 +1,96 @@
+{{ 'banner-secondary.css' | asset_url | stylesheet_tag }}
+
+<div class="banner-secondary">
+  {{ section.settings.secondary_banner_image | image_url: width: 1500 | image_tag:
+    loading: 'lazy',
+    class: "secondary__banner__image",
+    sizes: "100%",
+    alt: section.settings.secondary_banner_image.alt | escape
+  }}
+  <div class="secondary_banner-info">
+    {% for block in section.blocks %}
+      {% assign secondary_banner_block = block.settings %}
+      {% if secondary_banner_block.secondary_banner_title %}
+        <h1>{{secondary_banner_block.secondary_banner_title}}</h1>
+      {% endif %}
+      {% if secondary_banner_block.secondary_banner_text %}
+        <p>{{ secondary_banner_block.secondary_banner_text }}</p>
+      {% endif %}
+      {% if secondary_banner_block.secondary_banner_link %}
+          <a href="{{secondary_banner_block.secondary_banner_link}}">{{secondary_banner_block.secondary_banner_linktext}} {% render 'icon-arrow'%} </a>
+      {% endif %}
+    {% endfor %} 
+  </div>
+</div>
+
+{% schema %}
+  {
+   "name": "Secondary banner",
+   "settings" : [
+      {
+       "type": "image_picker",
+       "id" : "secondary_banner_image",
+       "label" : "Secondary banner image"
+      }
+   ],
+   "blocks" : [
+   {
+     "type" : "secondary_banner_title",
+     "name" : "Secondary Banner title",
+     "limit" : 1,
+     "settings" : [
+       {
+         "type" : "text",
+         "id" : "secondary_banner_title",
+         "default" : "Training in comfort",
+         "label" : "Secondary Banner title"
+       }
+     ]
+   },
+   {
+     "type" : "secondary_banner_text",
+     "name" : "Secondary Banner text",
+     "limit" : 1,
+     "settings" : [
+       {
+         "type" : "text",
+         "id" : "secondary_banner_text",
+         "default" : "Incredibly soft Airlume combed and ringspun cotton + poly fabric provides excellent stretch and recovery during even the most intense workouts.",
+         "label" : "Secondary Banner text"
+       } 
+     ]
+   },
+   {
+     "type" : "secondary_banner_link",
+     "name" : "Secondary Banner link",
+     "limit" : 1,
+     "settings" : [
+       {
+         "type" : "text",
+         "id" : "secondary_banner_linktext",
+         "default" : "Shop now",
+         "label" : "Banner link text"
+       },
+       {
+         "type" : "url",
+         "id" : "secondary_banner_link",
+         "label" : "Banner link url"
+       }
+     ]
+   }
+ ],
+ "presets": [
+   {
+     "name": "Banner secondary",
+     "blocks": [
+       {
+         "type": "secondary_banner_title"
+       },
+       {
+         "type": "secondary_banner_text"
+       }
+     ]
+   }
+ ]
+  }
+{% endschema %}

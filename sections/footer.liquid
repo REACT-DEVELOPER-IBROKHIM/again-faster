@@ -1,0 +1,105 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+<footer>
+  <div class="footer__container">
+    <div class="footer__main">
+      <div class="footer__newletter">
+        <p class="footer__form-title">{{ section.settings.footer__formtitle }}</p>
+        {% form 'customer', customer %}
+          {% if form.errors %} 
+            <p>Not Successfull</p>
+          {% elsif form.posted_successfully? %}
+            <p>Successfull</p> 
+          {% endif %}
+          <div class="footer__form">
+            <input  accept-charset="UTF-8" name="form_type" required type="email" placeholder="Enter your email">
+            <button>
+              {% render 'icon-arrowform' %}
+            </button>
+          </div>  
+        {% endform %}
+        <ul class="footer__collection">
+          <li class="collection__item">
+            <a href="{{ section.settings.footer__facebookurl }}" class="item__link">
+              {% render 'icon-facebook' %}
+            </a>
+          </li>
+          <li class="collection__item">
+            <a href="{{ section.settings.footer__instagramurl }}" class="item__link">
+              {% render 'icon-instagram' %}
+            </a>
+          </li>
+          <li class="collection__item">
+            <a href="{{  section.settings.footer__mailurl }}" class="item__link">
+              {% render 'icon-mail' %}
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <nav class="footer-nav"> 
+       <div>
+        <p class="footer__nav-title">{{ section.settings.footer_menu.title }}</p>
+        <ul class="footer__nav-collection">
+          {% for link in section.settings.footer_menu.links %}
+            <li><a href="{{link.url}}">{{link.title}}</a></li>
+          {% endfor %}
+         </ul>
+       </div>
+       <div>
+        <p class="footer__nav-title">{{ section.settings.get_help.title }}</p>
+        <ul class="footer__nav-collection">
+          {% for link in section.settings.get_help.links %}
+            <li><a href="{{link.url}}">{{link.title}}</a></li>
+          {% endfor %} 
+         </ul>
+       </div>
+      </nav>
+    </div>
+  </div>
+  <div class="footer__watermark">
+    {% render 'watermark' %}
+  </div>
+</footer>
+
+{% schema %}
+  {
+   "name": "Footer",
+   "settings" : [
+      {
+       "type": "text",
+       "id" : "footer__formtitle",
+       "default" : "Newsletter",
+       "label" : "Footer Form title"
+      },
+      {
+        "type": "text",
+        "id" : "footer__facebookurl",
+        "default" : "www.facebook.com",
+        "label" : "Footer Facebook url"
+       },
+       {
+        "type": "text",
+        "id" : "footer__instagramurl",
+        "default" : "www.instagram.com",
+        "label" : "Footer Instagram url"
+       },
+       {
+        "type": "text",
+        "id" : "footer__mailurl",
+        "default" : "mailto:someone@gmail.com",
+        "label" : "Footer Mail url"
+       },
+       {
+        "type": "link_list",
+        "id" : "footer_menu",
+        "default": "footer",
+        "label" : "Footer Navigation Menu"
+       },
+       {
+        "type": "link_list",
+        "id" : "get_help",
+        "label" : "Footer Navigation Get"
+       }
+    ]
+  }
+{% endschema %} 

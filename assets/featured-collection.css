@@ -1,0 +1,32 @@
+.featured-products{
+  margin-top: 97px;
+  margin-bottom: 120px;
+}
+
+.swiper-wrapper{
+  padding-left: 40px;
+}
+
+.featured-item > {
+  width: 328px;
+  height: auto;
+  margin: 0px 8px;
+}
+
+.featured-item > a{
+  text-align: center;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 168%;
+  font-family: var(--oswald);
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.featured-item > a > img{
+  width: 100%;
+  height: 334px;
+}

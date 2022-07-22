@@ -1,0 +1,30 @@
+{{ 'collection-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-banner">
+    <div class="collection-banner-info">
+      {%- if collection.metafields.accentuate.eyebrow -%}
+          <p class="bannerinfo-subtitle"> <span>/</span> {{ collection.metafields.accentuate.eyebrow | upcase }}</p>
+      {% endif %}
+      {%- if collection.metafields.title.title -%}
+        <h1 class="bannerinfo-title">{{ collection.metafields.title.title | upcase }}</h1>
+      {% endif %}
+      {%- if collection.metafields.cta_label.cta_label and collection.metafields.cta_url.cta_url -%}
+        <a class="bannerinfo-link" href="{{ collection.metafields.cta_url.cta_url }}">{{ collection.metafields.cta_label.cta_label }} {% render 'icon-arrow' %} </a>
+      {% endif %}
+    </div>
+    <div class="collection-banner-image">
+      {{ collection.metafields.custom.image_1 | image_url: width: 1500  | image_tag:
+        loading: 'lazy',
+        class: "bannerinfo_imageMain",
+        sizes: "100vw",
+        alt: collection.metafields.custom.image_1.alt | escape
+      }}
+      {{ collection.metafields.custom.image_2 | image_url: width: 1500 | image_tag:
+        loading: 'lazy',
+        class: "bannerinfo_imageSecondary",
+        sizes: "100vw",
+        alt: collection.metafields.custom.image_2.alt | escape
+      }}
+    </div>
+</div>
+{% section 'main-list-collections' %}

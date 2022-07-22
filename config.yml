@@ -1,0 +1,14 @@
+development:
+  password: shptka_6c29016aad606713d0c4c948447b036d
+  theme_id: "134042779864"
+  store: againfasterpractice.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  # - templates/*.json
+prod:
+  password: shptka_6c29016aad606713d0c4c948447b036d
+  theme_id: "134042779864"
+  store: againfasterpractice.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+  - templates/*.json

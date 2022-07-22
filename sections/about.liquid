@@ -1,0 +1,53 @@
+{{ 'about.css' | asset_url | stylesheet_tag }}
+
+<div class="about">
+  <img src="{{ section.settings.about_image | img_url: 'master' }}" alt="{{ section.settings.about_image.alt }}">
+  <div class="about_wrapper">
+    <h2>{{ section.settings.about_title }}</h2>
+    <div>
+      <p>{{ section.settings.about_text }}</p>
+      <a href="{{section.setting.about_link }}">{{ section.settings.about_linktext }} {% render 'icon-arrow' %} </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "About",
+    "settings" : [
+      {
+        "type" : "image_picker",
+        "id" : "about_image",
+        "label" : "About image"
+      },
+      {
+       "type": "text",
+       "id" : "about_title",
+       "default" : "We believe in training with intention.",
+       "label" : "About title"
+      },
+      {
+        "type" : "text",
+        "id" : "about_text",
+        "default" : "Since 2006, Again Faster has produced top-quality gear for commercial gyms, CrossFit boxes, weekend warriors, and everyday athletes. But we’re also redefining what customers expect from a fitness company. We offer expert advice and inspiring stories of fitness and beyond to share with your friends.",
+        "label" : "About text"
+      },
+      {
+        "type" : "text",
+        "id" : "about_linktext",
+        "default" : "About us",
+        "label" : "About link text"
+      },
+      {
+        "type" : "url",
+        "id" : "about_link",
+        "label" : "About link"
+      }
+    ],
+    "presets" : [ 
+      {
+       "name": "About"
+      }
+    ]
+  }
+{% endschema %}

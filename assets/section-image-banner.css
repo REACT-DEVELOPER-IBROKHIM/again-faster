@@ -1,0 +1,78 @@
+.banner{
+  width: 100%;
+  height: 1024px;
+  position: relative;
+}
+
+.banner__image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-info{
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  padding: 40px;
+  font-family: var(--open-sans);
+}
+
+.banner__title{
+  width: 200px;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 130%;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.banner__text{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 167.5%;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.banner__calltoact{
+  width: 236px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  border: 1px solid #fff;
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  padding: 21px 24px;
+  text-transform: uppercase;
+  line-height: 16px;
+  letter-spacing: 0.175em;
+  margin-top: 40px;
+}
+
+.banner__calltoact > svg{
+  width: 16px;
+}
+
+.align-left{
+  left: 0;
+}
+
+.align-center{
+  left: 50%;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+  transform: translateX(-50%);
+}
+
+
+.align-center > .banner__title {
+  width: 100%;
+}

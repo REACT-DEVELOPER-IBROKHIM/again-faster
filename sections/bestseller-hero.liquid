@@ -1,0 +1,118 @@
+{{ 'bestseller-hero.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.bestseller_reverse == true %}
+    {% assign reverse = "reversed" %}
+{% else %}
+  {% assign reverse = "" %}
+{% endif %}
+
+<div class="bestseller-hero">
+    <div class="bestseller-container {{reverse}}">
+      <div class="image__wrapper-main">
+        <img src="{{ section.blocks[0].settings.bestseller_hero_main | img_url: 'master'}}" alt="{{ section.blocks.banner_main_image.settings.bestseller_hero_main.alt }}">
+      </div>
+      <div class="image__wrapper-secondary">
+        {%- if section.blocks[1].settings.bestseller_hero_secondary -%}
+          <img src="{{ section.blocks[1].settings.bestseller_hero_secondary | img_url: 'master'}}" alt="{{ section.blocks.banner_secondary_image.settings.bestseller_hero_secondary.alt }}">
+        {% endif %}
+        <div class="bestseller-info">
+          <p class="bestseller__subtitle">{{ section.settings.bestseller_subtitle }}</p>
+          <strong class="bestseller__title"> {{ section.settings.bestseller_title }} </strong>
+          <p class="bestseller__text">{{ section.settings.bestseller_text }}</p>
+          {% if section.settings.bestseller_linkurl %}
+            {% assign explore_url = section.settings.bestseller_linkurl %}
+          {% else %} 
+            {% assign explore_url = "/shop" %} 
+          {% endif %}
+          <a class="bestseller__link" href="{{ explore_url }}">{{ section.settings.bestseller_linktitle }}</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+   "name": "Best Seller hero",
+   "settings" :[
+    {
+      "type" : "image_picker",
+      "id" : "bestseller_hero_secondary",
+      "label" : "Bestseller secondary image"
+    },
+    {
+      "type": "text",
+      "id" : "bestseller_subtitle",
+      "default" : "Best seller",
+      "label" : "Best seller subtitle"
+     },
+     {
+       "type": "text",
+       "id" : "bestseller_title",
+       "default" : "Truly, an all in one barbell",
+       "label" : "Best seller title"
+      },
+      {
+       "type": "text",
+       "id" : "bestseller_text",
+       "default" : "Design that matches the performance and quality of other elite level competition bars",
+       "label" : "Best seller text"
+      },
+      {
+       "type": "text",
+       "id" : "bestseller_linktitle",
+       "default" : "Shop weights", 
+       "label" : "Best seller link title"
+      },
+      {
+        "type": "url",
+        "id" : "bestseller_linkurl",
+        "label" : "Best seller link URL"
+       },
+       {
+        "type" : "checkbox",
+        "id" : "bestseller_reverse",
+        "label" : "Reverse section"
+       }
+   ],
+   "blocks" : [
+       {
+         "type": "banner_main_image",
+         "name" : "Banner main image",
+         "limit" : 1,
+         "settings": [
+            {
+              "type" : "image_picker",
+              "id" : "bestseller_hero_main",
+              "label" : "Bestseller main image"
+            }
+         ]
+       },
+       {
+        "type": "banner_secondary_image",
+        "name" : "Banner secondary image",
+        "limit" : 1,
+        "settings": [
+           {
+             "type" : "image_picker",
+             "id" : "bestseller_hero_secondary",
+             "label" : "Bestseller secondary image"
+           }
+        ]
+      }
+   ],
+   "presets" : [
+       {
+          "name" : "Image section",
+          "blocks" : [
+            {
+             "type": "banner_main_image"
+            },
+            {
+              "type": "banner_secondary_image"
+             }
+          ]
+       }
+   ]
+  }
+{% endschema %}

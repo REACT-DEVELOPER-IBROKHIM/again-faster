@@ -1,0 +1,61 @@
+<div class="comment">
+  {% for block in section.blocks %}
+    {% assign comment_info = block.settings %}
+
+    {%- if comment_info.comment_title -%}
+      <p class="comment_title">{{ comment_info.comment_title }}</p>
+    {% endif %}
+
+    {%- if comment_info.comment_body -%}
+      <h2 class="comment_body">{{ comment_info.comment_body }}</h2>
+    {% endif %}
+
+    {%- if comment_info.comment_author -%}
+      <p class="comment_author"> <span>/</span> {{ comment_info.comment_author }}</p>
+    {% endif %}
+
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+   "name": "Comment",
+   "blocks" : [
+      {
+        "type" : "comment",
+        "name" : "Comment",
+        "limit": 1,
+        "settings" : [
+          {
+            "type" : "text",
+            "id" : "comment_title",
+            "default" : "What our customers are saying.",
+            "label" : "Comments title"
+          },
+          {
+            "type" : "text",
+            "id" : "comment_body",
+            "default" : "“Amazing product quality, Very communicative on timing and shipping.”",
+            "label" : "Comment body text"
+          },
+          {
+            "type" : "text",
+            "id" : "comment_author",
+            "default" : "Andy Smith",
+            "label" : "Comment author"
+          }
+        ]
+      }
+   ],
+   "presets" : [
+      {
+        "name" : "Comment",
+        "blocks" : [
+            {
+              "type": "comment"
+            }
+        ]
+      }
+   ]
+  }
+{% endschema %}

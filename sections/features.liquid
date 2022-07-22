@@ -1,0 +1,54 @@
+{{ 'feature.css' | asset_url | stylesheet_tag }}
+
+<div class="feature">
+  <div class="feature-container">
+    {% for block in section.blocks %}
+      {% assign feature_item_info = block.settings %}
+      <div class="feature-item">
+        <img src="{{ feature_item_info.feature_item_image | img_url: 'medium' }}" alt="">
+        <p class="feature-item_title">{{ feature_item_info.feature_item_title }}</p>
+        <p class="feature-item_content">{{ feature_item_info.feature_item_text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+   "name": "Features",
+   "blocks" : [
+      {
+       "type": "feature_item",
+       "name" : "Feature item",
+       "limit" : 6,
+       "settings" : [
+          {
+            "type" : "image_picker",
+            "id" : "feature_item_image",
+            "label" : "Feature item image"
+          },
+          {
+            "type" : "text",
+            "id" : "feature_item_title",
+            "label" : "Feature item title"
+          },
+          {
+            "type" : "text",
+            "id" : "feature_item_text",
+            "label" : "Feature item text"
+          }
+       ]
+      }
+   ],
+   "presets" : [
+      {
+        "name" : "Feature items",
+        "blocks" : [
+          {
+           "type": "feature_item"
+          }
+        ]
+      }
+   ]
+  }
+{% endschema %}

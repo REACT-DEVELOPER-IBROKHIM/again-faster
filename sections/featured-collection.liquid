@@ -1,0 +1,26 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+<div class="swiper featured-products">
+  <div class="swiper-wrapper">
+    {% for collection in collections %}
+        {% if collection.all_products_count > 0 %}
+          <div class="swiper-slide featured-item">
+              <a href="{{ collection.url }}">
+                <img src="{{collection.image | img_url: 'master'}}" alt="">
+                <p>{{ collection.title }}</p>
+              </a>
+          </div>
+        {% endif %}
+    {% endfor %}
+  </div>
+  <div class="swiper-scrollbar"></div>
+</div>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+  slidesPerView: 4,
+  direction: 'horizontal',
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  }
+});
+</script>

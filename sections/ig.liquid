@@ -1,0 +1,51 @@
+{{ "ig.css" | asset_url | stylesheet_tag }}
+<div class="ig">
+  {% for block in section.blocks %}
+  {% assign ig_item_info = block.settings %}
+      <div class="ig-item">
+        <img src="{{ ig_item_info.ig_image | img_url: 'master' }}" alt="">
+      </div>
+  {% endfor %}
+ {% if section.settings.watermark_enabled %}
+  <div class="ig_watermark">
+    {% render 'watermark-large' %}
+  </div>
+ {% endif %}
+</div>
+
+{% schema %}
+  {
+   "name": "IG",
+   "settings" : [
+      {
+        "type" : "checkbox",
+        "id" : "watermark_enabled",
+        "label" : "Show watermark"
+      }
+   ],
+   "blocks" : [
+      {
+        "type" : "ig_image",
+        "name" : "IG image",
+        "limit" : 4,
+        "settings" : [
+          {
+            "type" : "image_picker",
+            "id" : "ig_image",
+            "label" : "IG image"
+          }
+        ]
+      }
+   ],
+   "presets" : [
+      {
+       "name": "IG",
+       "blocks" : [
+          {
+            "type" : "ig_image"
+          }
+       ]
+      }
+   ]
+  }
+{% endschema %}

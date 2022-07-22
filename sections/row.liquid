@@ -1,0 +1,57 @@
+{{ 'row-section.css' | asset_url | stylesheet_tag }}
+
+<div class="row-section">
+  {% for row in section.blocks %}
+  {% assign row_item_info = row.settings %}
+    <div class="row-item">
+      <img src="{{ row_item_info.row_item_image | img_url: 'master' }}" alt="">
+      <h2>{{ row_item_info.row_item_title }}</h2>
+      <a href="{{ row_item_info.row_item_link }}">{{ row_item_info.row_item_linktext }}</a>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Row",
+    "blocks" : [
+      {
+       "type": "row_item",
+       "name" : "Row item",
+       "limit" : 2,
+       "settings" : [
+          {
+            "type" : "image_picker",
+            "id" : "row_item_image",
+            "label" : "Row item image"
+          },
+          {
+            "type" : "text",
+            "id" : "row_item_title",
+            "label" : "Row item title"
+          },
+          {
+            "type" : "url",
+            "id" : "row_item_link",
+            "label" : "Row item link"
+          },
+          {
+            "type" : "text",
+            "id" : "row_item_linktext",
+            "label" : "Row item link text"
+          }
+       ]
+      }
+    ],
+    "presets" : [
+      {
+       "name": "Row" ,
+       "blocks" : [
+            {
+              "type": "row_item"
+            }
+        ]
+      }
+    ]
+  }
+{% endschema %}

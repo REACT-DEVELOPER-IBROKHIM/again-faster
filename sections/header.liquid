@@ -1,0 +1,95 @@
+{% assign templateType = template | split:'.' | first %}
+<header>
+  {% if templateType == "index" %}
+    {% assign theme_color = "light" %}
+  {% else %}
+    {% assign theme_color = "dark" %}
+  {% endif %}
+  <p>{{check_url}}</p>
+  <div class="header-container">
+    <a class="header-link {{ theme_color }}" href="{{ routes.root_url }}">
+        {%- if section.settings.header_logo != blank -%}
+        {%- assign headerlogo_alt = section.settings.header_logo.alt | default: shop.name | escape -%}
+        {% assign headerlogo_height = section.settings.headerlogo_width | divided_by: section.settings.headerlogo_width.aspect_ratio %}
+        {{ section.settings.header_logo | image_url: width: section.settings.width | image_tag:
+          class: 'header-logo',
+          height: logo_height,
+          width: section.settings.headerlogo_width, 
+          alt: headerlogo_alt
+        }}
+      {%- else -%}
+        <span class="h2">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+   <nav id="navbar">
+      <ul class="nav__collection"> 
+        {% for link in section.settings.menu.links %}
+          {% unless link.links == blank %}
+          {% assign link_handle = link.handle | replace: '-', '_' %}
+            <li class="nav__collection-item">
+              <button class="nav__collection-link item-btn {{theme_color}}">
+                {{ link.title }} {% render 'icon-dropdown' %}
+              </button>
+            </li>
+          {% else %}
+           <li class="nav__collection-item">
+            <a class="nav__collection-link {{theme_color}}" href="{{ link.url }}">{{ link.title }}</a>
+           </li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+   </nav>
+   {{template_name}}
+
+   <div class="header-control">
+    <button class="control-search {{theme_color}}">
+      {% render 'icon-search' %}
+    </button>
+    
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %} 
+        {% if routes.account_url %}
+          <a class="control-link {{theme_color}}" href="{{ routes.account_url }}">{% render 'icon-user' %}</a>
+        {% endif %}
+      {% else %}
+          <a class="control-link {{theme_color}}" href="{{ routes.account_login_url }}" id="customer_login_link">{% render 'icon-user' %}</a>
+      {% endif %}
+    {% endif %}
+
+    {% if cart %}
+      {% if routes.cart_url %}
+        <a class="control-link {{theme_color}}" href="{{ routes.cart_url }}">{% render 'icon-bag' %}</a>
+      {% endif %}
+    {% endif %}
+   </div>
+  </div>
+</header>
+
+{% schema %}
+  {
+   "name": "Header",
+   "settings" : [
+    {
+      "type" : "image_picker",
+      "id" : "header_logo",
+      "label" : "Header logo"
+    },
+    {
+      "type": "range",
+      "id": "headerlogo_width",
+      "min": 50,
+      "max": 212,
+      "step": 2,
+      "default": 100,
+      "unit": "px",
+      "label": "In px"
+    },
+    {
+      "type": "link_list",
+      "id" : "menu",
+      "default": "main-menu",
+      "label" : "Header Navigation Menu"
+     }
+   ]
+  }
+{% endschema %}

@@ -1,0 +1,22 @@
+<div class="product__card">
+    <div class="card__image-container">
+      <a href="{{ product_data.url }}">
+        {% if product_data.featured_image %}
+          <img class="card__image" src="{{ product_data.featured_image | img_url: 'large' }}" alt="">
+        {% else %}
+          {{ 'product-2' | placeholder_svg_tag: 'card__image' }}
+        {% endif %}
+      </a>
+    </div>
+    <p class="card__title">{{ product_data.title }}</p>
+    <div class="card__rating">
+      {% render 'icon-star' %}
+      {% render 'icon-star' %}
+      {% render 'icon-star' %}
+      {% render 'icon-star' %}
+      {% render 'icon-star' %}
+    </div>
+    <p class="card__price">
+      {{ product_data.price | money }}
+    </p>
+</div>

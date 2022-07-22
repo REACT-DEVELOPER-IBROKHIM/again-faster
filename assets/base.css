@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&family=Work+Sans:wght@200;300;400;500;600;700;800;900&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --oswald:  'Oswald', sans-serif;
+  --open-sans: 'Open Sans', sans-serif;
+  --work-sans: 'Work Sans', sans-serif;
+}
+
+.header-announcementbar{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+header{
+  width: 100%;
+  height: 52px;
+  display: flex;
+  font-family: var(--open-sans);
+}
+
+.header-container{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0px 40px;
+}
+
+.header-link{
+  width: 212px;
+  height: 20px !important;
+}
+
+.nav__collection{
+  list-style-type: none;
+  display: flex;
+}
+
+.nav__collection-item{
+  position: relative;
+  margin-right: 40px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.175em;
+}
+
+.nav__collection-link{
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.nav__collection-item:last-child{
+  margin-right: 0;
+}
+
+.header__search > svg{
+  width: 16px;
+}
+
+#customer_login_link{
+  text-decoration: none;
+  color: #fff;
+}
+
+.header-control{
+  width: 212px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.control-search{
+  background-color: transparent;
+  border: none;
+}
+
+.control-link{
+  margin-left: 17px;
+}
+
+.collection-page{
+  height: auto;
+  width: 100%;
+}
+
+.item-btn{
+  background: transparent;
+  border: none;
+}
+
+.item-btn > svg{
+  stroke: #fff;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+
+.comment{
+  width: 100%;
+  text-align: center;
+  line-height: 167%;
+  text-transform: uppercase;
+}
+
+.comment_title{
+  font-family: var(--oswald);
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  margin-top: 160px;
+}
+
+.comment_body{
+  width: 62%;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.08em;
+  margin: 64px auto;
+  font-family: var(--open-sans);
+}
+
+.comment_author{
+  font-weight: 400;
+  font-size: 14px;
+  font-family: var(--open-sans);
+  margin-bottom: 160px;
+}
+
+.comment_author > span{
+  color: #C2A578;
+}
+
+.dark{
+  color: #000;
+}
+
+.light{
+  color: #fff;
+}
+
+.dark > img{
+  filter: invert(180%);
+}
+
+.dark > svg{
+  filter: invert(180%);
+}

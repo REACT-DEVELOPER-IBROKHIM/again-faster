@@ -1,0 +1,115 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="banner">
+  {{ section.settings.banner_image | image_url: width: 1500 | image_tag:
+    loading: 'lazy',
+    class: "banner__image",
+    sizes: "100vw",
+    alt: section.settings.banner_image.alt | escape
+  }}
+
+  <div class="banner-info align-{{section.settings.info_alignment}}">
+    {% for block in section.blocks %}
+    {% assign single_block = block.settings %}
+        {% if single_block.banner_title %}
+          <h1 class="banner__title">{{ single_block.banner_title }}</h1>
+        {% endif %}
+        {% if single_block.banner_text %}
+          <p>{{ single_block.banner_text }}</p>
+        {% endif %}
+        {% if single_block.banner_linktext %}
+          <a class="banner__calltoact" href="{{ single_block.banner_link }}"> {{ single_block.banner_linktext }} {% render 'icon-arrow'%} </a>
+        {% endif %}
+    {% endfor %}
+  </div>
+</div> 
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "select",
+      "id" : "info_alignment",
+      "label" : "Align the info",
+      "options" : [
+        {
+          "value" : "left",
+          "label" : "Left"
+        },
+        {
+          "value" : "center",
+          "label" : "Center"
+        }
+      ],
+      "default" : "left",
+      "label" : "Left",
+      "info" : "Change the info position."
+    }
+  ],
+  "blocks" : [
+    {
+      "type" : "banner_title",
+      "name" : "Banner title",
+      "limit" : 1,
+      "settings" : [
+        {
+          "type" : "text",
+          "id" : "banner_title",
+          "default" : "Team barbell",
+          "label" : "Banner title"
+        }
+      ]
+    },
+    {
+      "type" : "banner_text",
+      "name" : "Banner text",
+      "limit" : 1,
+      "settings" : [
+        {
+          "type" : "text",
+          "id" : "banner_text",
+          "default" : "Team Barbell was to design a piece of equipment that matches the performance and quality of other elite level competition bars.",
+          "label" : "Banner text"
+        } 
+      ]
+    },
+    {
+      "type" : "banner_link",
+      "name" : "Banner link",
+      "limit" : 1,
+      "settings" : [
+        {
+          "type" : "text",
+          "id" : "banner_linktext",
+          "default" : "Explore",
+          "label" : "Banner link text"
+        },
+        {
+          "type" : "url",
+          "id" : "banner_link",
+          "label" : "Banner link url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner info",
+      "blocks": [
+        {
+          "type": "banner_title"
+        },
+        {
+          "type": "banner_text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

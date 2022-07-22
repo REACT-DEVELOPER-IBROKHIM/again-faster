@@ -1,0 +1,65 @@
+{{ 'bestseller-collection.css' | asset_url | stylesheet_tag }}
+  <div class="swiper bestseller__collection">  
+    <div class="swiper-wrapper">
+        <div class="swiper-slide collection__info">
+          <p class="collection__info-subtitle">{{ section.settings.bestseller__subtitle }}</p>
+          <strong class="collection__info-title">{{ section.settings.bestseller__title }}</strong>
+          <p class="collection__info-text">{{ section.settings.bestseller__text }}</p>
+          <b class="collection__info-calltoact">{{ section.settings.bestseller__calltoact }}</b>
+        </div>
+        {% for product in section.settings.bestseller_collection.products %}
+          <div class="swiper-slide">
+            {% render "product-card", product_data: product %}
+          </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+
+<script>
+  const swiperBest = new Swiper('.swiper', {
+  slidesPerView: 4,
+  direction: 'horizontal',
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  }
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Best Seller products",
+    "settings": [ 
+      {
+       "type": "text",
+        "id" : "bestseller__subtitle",
+        "default" : "Best sellers",
+        "label" : "Best seller subtitle"
+      },
+      {
+        "type": "text",
+         "id" : "bestseller__title",
+         "default" : "Our favorites",
+         "label" : "Best seller title"
+      },
+      {
+        "type": "text", 
+         "id" : "bestseller__text",
+         "default" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+         "label" : "Best seller text"
+      },
+      {
+        "type": "text", 
+         "id" : "bestseller__calltoact",
+         "default" : "Shop Best seller",
+         "label" : "Best seller calltoact"
+      }, 
+      {
+        "type": "collection",
+         "id" : "bestseller_collection",
+         "label" : "Collection"
+       }
+    ]
+  }
+{% endschema %}

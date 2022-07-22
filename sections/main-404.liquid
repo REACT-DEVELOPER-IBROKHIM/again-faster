@@ -1,0 +1,47 @@
+<style type="text/css">
+  .page-404{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-404-subtitle{
+    font-size: 40px;
+    font-weight: 900;
+    font-family: var(--oswald);
+  }
+
+  .page-404-title{
+    font-weight: 300;
+    font-size: 30px;
+    font-family: var(--open-sans);
+  }
+
+  .page-404-button{
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    font-family: var(--open-sans);
+    text-decoration: none;
+    margin-top: 30px;
+  }
+
+  .page-404-button:hover{
+    background-color: #121212;
+  }
+</style>
+
+<div class="page-404">
+  <p class="page-404-subtitle">
+    {{ 'templates.404.subtext' | t }}
+  </p>
+  <p class="page-404-title">
+    {{ 'templates.404.title' | t }}
+  </p>
+  <a href="{{ routes.all_products_collection_url }}" class="page-404-button">
+    {{ 'general.continue_shopping' | t }}
+  </a>
+</div>
