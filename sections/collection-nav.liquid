@@ -1,0 +1,49 @@
+<div class="collection-nav">
+  <h1>{{ collection.title }}</h1>
+  <nav>
+    <ul class="collections-list">
+        {% for block in section.blocks %}
+        {% assign current_tab = "" %}
+        {% if collection.id == block.settings.collection_nav.id %}
+          {% assign current_tab = "active_tab" %}
+        {% endif %}
+            <li class="collection-list-item"> 
+                <a class="collection-list-link {{current_tab}}" href="{{ block.settings.collection_nav.url }}">{{ block.settings.collection_nav.title }}</a> 
+                {% unless block.settings.collection_nav.id == section.blocks.last.settings.collection_nav.id %}
+                  <span>/</span>
+                {% endunless %}
+            </li>
+        {% endfor %}
+    </ul> 
+  </nav>
+</div>
+
+
+{% schema %}
+  {
+   "name": "Collection Nav",
+   "blocks" : [
+    {
+      "type" : "collection_nav_item",
+      "name": "Collection Nav item",
+      "settings" : [
+        {
+          "type" : "collection",
+          "id" : "collection_nav",
+          "label" : "Collection Nav collection"
+        }
+      ]
+    }
+   ],
+   "presets" : [
+      {
+        "name" : "Collection nav",
+        "blocks" : [
+            {
+              "type" : "collection_nav_item"
+            }
+        ]
+      }
+   ]
+  }
+{% endschema %}

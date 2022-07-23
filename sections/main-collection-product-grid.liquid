@@ -1,11 +1,13 @@
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
-<h1>hELLO</h1>
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="collection-product-grid">
+  <div class="collection-product-container">
+    {% paginate collection.products by 12 %}
+      {% for product in collection.products %}
+       <div class="product-card">
+        {% render 'product-card', product_data: product, width: "large" %}
+       </div>
+      {% endfor %}
+    {% endpaginate %}
+  </div>
+</div>

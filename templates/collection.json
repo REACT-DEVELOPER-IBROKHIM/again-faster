@@ -1,5 +1,8 @@
 {
   "sections": {
+    "collection-nav" : {
+      "type" : "collection-nav"
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -18,6 +21,7 @@
     }
   },
   "order": [
+    "collection-nav",
     "product-grid"
   ],
   "wrapper" : "div.collection-page"

@@ -1,4 +1,6 @@
-<div class="product__card">
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<div class="product__card {{width}}">
     <div class="card__image-container">
       <a href="{{ product_data.url }}">
         {% if product_data.featured_image %}

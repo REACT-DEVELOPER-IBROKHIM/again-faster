@@ -2,6 +2,7 @@
   width: 100%;
   height: 1024px;
   position: relative;
+  margin-top: -52px;
 }
 
 .banner__image{
