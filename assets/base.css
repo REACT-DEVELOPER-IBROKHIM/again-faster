@@ -96,6 +96,9 @@ header{
 .item-btn{
   background: transparent;
   border: none;
+  font-weight: 400;
+  font-size: 12px;
+
 }
 
 .item-btn > svg{
@@ -153,4 +156,8 @@ header{
 
 .dark > svg{
   filter: invert(180%);
+}
+
+.bg{
+  background-color: #fff;
 }

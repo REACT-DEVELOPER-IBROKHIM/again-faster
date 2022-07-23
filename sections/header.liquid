@@ -1,12 +1,13 @@
 {% assign templateType = template | split:'.' | first %}
-<header>
-  {% if templateType == "index" %}
+{% if templateType == "index" %}
     {% assign theme_color = "light" %}
   {% else %}
     {% assign theme_color = "dark" %}
+    {% assign bg = "bg" %}
   {% endif %}
+<header class="{{bg}}">
   <p>{{check_url}}</p>
-  <div class="header-container">
+  <div class="header-container ">
     <a class="header-link {{ theme_color }}" href="{{ routes.root_url }}">
         {%- if section.settings.header_logo != blank -%}
         {%- assign headerlogo_alt = section.settings.header_logo.alt | default: shop.name | escape -%}
