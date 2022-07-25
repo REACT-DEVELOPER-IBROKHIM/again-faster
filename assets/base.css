@@ -161,3 +161,14 @@ header{
 .bg{
   background-color: #fff;
 }
+
+.swiper-pagination-bullet {
+  background-color: #f1f1f1 !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #353535 !important;
+  opacity: 1 !important;
+}
+

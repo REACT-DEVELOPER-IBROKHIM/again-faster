@@ -4,6 +4,7 @@
   height: auto;
   margin-right: 16px;
   background-color: #fff;
+  position: relative;
 }
 
 .card__image-container{
@@ -51,4 +52,46 @@
 
 .large > .card__image-container{
   max-height: 554px;
+}
+
+.product_features{
+  display: flex;
+  position: absolute;
+  padding: 8px;
+  font-family: var(--open-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 167.5%;
+}
+
+.best-seller{
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  padding: 4px 16px;
+  margin-right: 8px;
+}
+
+.pre-order{
+  background-color: transparent;
+  border: 1px solid #C4C4C4;
+  display: flex;
+  padding: 4px 16px;
+  margin-right: 8px;
+}
+
+.free-shipping{
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  padding: 4px 16px;
+  margin-right: 8px;
+}
+
+.sale{
+  background-color: #9E0404;
+  color: #fff;
+  display: flex;
+  padding: 4px 16px;
+  margin-right: 8px;
 }

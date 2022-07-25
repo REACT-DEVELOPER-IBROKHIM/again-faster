@@ -2,6 +2,20 @@
 
 <div class="product__card {{width}}">
     <div class="card__image-container">
+      <div class="product_features">
+        {% if product_data.metafields.custom.best_seller %}
+        <div class="best-seller">Best seller</div>
+      {% endif %}
+      {% if product_data.metafields.custom.pre_order %}
+        <div class="pre-order">Pre-order</div>
+      {% endif %}
+      {% if product_data.metafields.custom.free_shipping %}
+        <div class="free-shipping">Free shipping</div>
+      {% endif %}
+      {% if product_data.metafields.custom.sale %}
+      <div class="sale">Sale</div>
+      {% endif %}
+      </div>
       <a href="{{ product_data.url }}">
         {% if product_data.featured_image %}
           <img class="card__image" src="{{ product_data.featured_image | img_url: 'large' }}" alt="">
