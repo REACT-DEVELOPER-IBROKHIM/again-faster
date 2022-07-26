@@ -12,17 +12,15 @@
       {% if product_data.metafields.custom.free_shipping %}
         <div class="free-shipping">Free shipping</div>
       {% endif %}
-      {% if product_data.metafields.custom.sale %}
+      {% if product_data.price < product_data.compare_at_price %}
       <div class="sale">Sale</div>
       {% endif %}
       </div>
-      <a href="{{ product_data.url }}">
         {% if product_data.featured_image %}
           <img class="card__image" src="{{ product_data.featured_image | img_url: 'large' }}" alt="">
         {% else %}
           {{ 'product-2' | placeholder_svg_tag: 'card__image' }}
         {% endif %}
-      </a>
     </div>
     <p class="card__title">{{ product_data.title }}</p>
     <div class="card__rating">

@@ -29,4 +29,5 @@
 .featured-item > a > img{
   width: 100%;
   height: 334px;
+  object-fit: contain;
 }

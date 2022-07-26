@@ -1,7 +1,8 @@
 .collection-list-container{
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 328px);
-  grid-template-rows: repeat(2, 334px);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
   grid-column-gap: 16px;
   padding: 40px;
   grid-row-gap: 40px;

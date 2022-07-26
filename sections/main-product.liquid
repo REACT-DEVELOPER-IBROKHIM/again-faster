@@ -1,5 +1,22 @@
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  .option-Color-radio:checked::after{
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: red;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+    box-shadow: 0px 0px 0px 1px gray;
+  }
+{%- endstyle %}
+
 <div class="product_container">
   <div class="product_form-container">
     <div class="product_media-wrapper">
@@ -29,18 +46,23 @@
 
             <span>18 reviews</span>
           </div>
+          <div>
+            {% assign finance_company_image = product.metafields.finance_company_img.finance_company_image %}
+          </div>
           <p class="product_info-desc">{{ product.description }}</p>
 
           <div class="product_variants_container">
             {% unless product.has_only_default_variant %}
                 <div data-url="{{ product.url }}" data-section="{{ section.id }}">
                     {% for option in product.options_with_values %}
-                        <label for="Option-{{section.id}}-{{forloop.index0 }}">{{ option.name }}</label>
+                        <label for="Option-{{section.id}}-{{forloop.index0 }}" class="option__label">{{ option.name }}</label>
 
                         <div class="product_variants">
                           {% for value in option.values %}
-                            <label for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
-                            <input type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
+                           <div>
+                            <input class="option-{{option.name}}-radio" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
+                            <label class="option-{{option.name}}-label" for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
+                           </div>
                           {% endfor %} 
                         </div>
                     {% endfor %}
@@ -51,6 +73,15 @@
           {% if product.metafields.custom.free_shipping %}
             <p class="product_features-shipping">Available for Free shipping!</p>
           {% endif %}
+            <button type="submit" class="addtocart_btn" {% if product.selected_or_first_available_variant.available == false %}
+                disabled
+            {% endif %}>
+              {% if product.selected_or_first_available_variant.available == false %}
+                Sold out
+              {% else %}
+                Add to cart
+              {% endif %}
+            </button>
         {% endform %}
       </div>
     </div>

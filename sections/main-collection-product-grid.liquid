@@ -5,7 +5,9 @@
     {% paginate collection.products by 12 %}
       {% for product in collection.products %}
        <div class="product-card">
-        {% render 'product-card', product_data: product, width: "large" %}
+        <a class="product-card-link" href="{{ product.url }}">
+          {% render 'product-card', product_data: product, width: "large" %}
+        </a>
        </div>
       {% endfor %}
     {% endpaginate %}
