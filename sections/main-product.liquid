@@ -55,20 +55,23 @@
 
           <div class="product_variants_container">
             {% unless product.has_only_default_variant %}
-                <div data-url="{{ product.url }}" data-section="{{ section.id }}">
+                <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                     {% for option in product.options_with_values %}
                         <label for="Option-{{section.id}}-{{forloop.index0 }}" class="option__label">{{ option.name }}</label>
 
                         <div class="product_variants">
                           {% for value in option.values %}
                            <div>
-                            <input class="option-{{option.name}}-radio" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
-                            <label class="option-{{option.name}}-label" for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
+                            <input class="option-{{option.name}}-radio" value="{{value}}" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
+                            <label class="option-{{option.name}}-label"  for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
                            </div>
                           {% endfor %} 
                         </div>
+                        <script type="application/json">
+                          {{ product.variants | json }}
+                        </script>
                     {% endfor %}
-                </div>
+                </variant-selector> 
             {% endunless %}
           </div>
 
@@ -89,6 +92,57 @@
     </div>
   </div>
 </div>
+
+<script>
+  class VariantSelector extends HTMLElement{
+    constructor(){
+      super();
+      this.addEventListener("change", this.onVariantChange);
+    }
+
+    onVariantChange(){
+      this.getSelectedOptions();
+      this.getSelectedVariant();
+    }
+
+    getSelectedOptions(){
+      this.radioSize = Array.from( this.querySelectorAll('input[name="option-Size"]'), function(rad) {
+        if(rad.checked){
+          return rad.value
+        }
+        return
+      } ).filter(i => i !== undefined)?.at(0)  
+      this.radioColor = Array.from( this.querySelectorAll('input[name="option-Color"]'),function(rad) {
+        if(rad.checked){
+          return rad.value
+        }
+        return
+      }).filter(i => i !== undefined)?.at(0)  
+      return this.options = [this.radioSize, this.radioColor];
+    }
+
+    getVariantJSON() {
+      this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent)
+      return this.variantData
+    }
+
+    getSelectedVariant(){
+      this.currentVariant = this.getVariantJSON().find(
+        variant => {
+          const foundVariant = !variant.options.map(
+            (option, index) => {
+             return this.getSelectedOptions()[index] = option
+            }
+          ).includes(false)
+          if(foundVariant) return variant
+        }
+      );
+      console.log(this.currentVariant)
+    }
+  }
+
+  customElements.define("variant-selector", VariantSelector)  
+</script>
 
 <script>
     var swiperProduct = new Swiper(".swiper", {
