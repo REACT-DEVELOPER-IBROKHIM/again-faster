@@ -46,8 +46,10 @@
 
             <span>18 reviews</span>
           </div>
-          <div>
-            {% assign finance_company_image = product.metafields.finance_company_img.finance_company_image %}
+          <div class="product_finance-company">
+            {% assign finance_company_image = product.metafields.finance_company_img.finance_company_image | first %}
+            <img src="{{ finance_company_image.src }}" alt="">
+            <p>{{ product.metafields.finance_company_text.finance_company_text }}</p>
           </div>
           <p class="product_info-desc">{{ product.description }}</p>
 

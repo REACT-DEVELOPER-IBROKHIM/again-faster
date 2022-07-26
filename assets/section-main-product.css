@@ -166,4 +166,19 @@
   text-transform: uppercase;
   font-family: var(--open-sans);
   margin-top: 40px;
+  cursor: pointer;
+}
+
+.product_finance-company{
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 167.5%;
+  font-family: var(--open-sans);
+}
+
+.product_finance-company > p{
+  margin-left: 8px;
 }
