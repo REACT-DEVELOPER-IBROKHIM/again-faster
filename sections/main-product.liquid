@@ -33,10 +33,11 @@
     </div>
     <div class="product_info-form">
       <div class="product_info">
-        {% form 'product', product %}
+        {% form 'product', product, id: "product-form", novalidate: 'novalidate'  %}
+        <input type="hidden" name="id" value="{{ selected_variant.id }}">
           <h1 class="product_info-title">{{ product.title }}</h1>
           {% assign product_price = product.selected_or_first_available_variant %}
-          <p class="product_info-price">{{ product_price.compare_at_price | money }}</p>
+          <p class="product_info-price" id="price-{{section.id }}">{{ product_price.compare_at_price | money }}</p>
           <div class="card__rating">
             {% render 'icon-star' %}
             {% render 'icon-star' %}
@@ -62,7 +63,7 @@
                         <div class="product_variants">
                           {% for value in option.values %}
                            <div>
-                            <input class="option-{{option.name}}-radio" value="{{value}}" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
+                            <input class="option-{{option.name}}-radio" {% if forloop.index0 == 0 %} checked {% endif %} value="{{value}}" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
                             <label class="option-{{option.name}}-label"  for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
                            </div>
                           {% endfor %} 
@@ -71,7 +72,7 @@
                           {{ product.variants | json }}
                         </script>
                     {% endfor %}
-                </variant-selector> 
+                </variant-selector>  
             {% endunless %}
           </div>
 
@@ -103,6 +104,12 @@
     onVariantChange(){
       this.getSelectedOptions();
       this.getSelectedVariant();
+
+      if(this.currentVariant){
+         this.updateURL();
+         this.updateFormID();
+         this.updatePrice();
+      }
     }
 
     getSelectedOptions(){
@@ -128,19 +135,45 @@
 
     getSelectedVariant(){
       this.currentVariant = this.getVariantJSON().find(
-        variant => {
+        (variant) => { 
           const foundVariant = !variant.options.map(
             (option, index) => {
-             return this.getSelectedOptions()[index] = option
+             return this.getSelectedOptions()[index] === option
             }
           ).includes(false)
           if(foundVariant) return variant
         }
       );
-      console.log(this.currentVariant)
+      console.log(this.currentVariant) 
     }
+
+    updateURL(){
+    if(!this.currentVariant) return
+    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`)
   }
 
+  updateFormID() {
+    const form_input = document.querySelector("#product-form").querySelector('input[name="id"]')
+    form_input.value = this.currentVariant.id; 
+  }
+
+  updatePrice() {
+      fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+        .then(res => res.text())
+        .then(resData => {
+          const id = `price-${this.dataset.section}`
+          const html = new DOMParser().parseFromString(resData, 'text/html')
+          const oldPrice  = document.getElementById(id);
+          const newPrice = html.getElementById(id)
+
+          if(oldPrice && newPrice)  oldPrice.innerHTML = newPrice.innerHTML
+        } );
+
+  }
+
+  }
+
+ 
   customElements.define("variant-selector", VariantSelector)  
 </script>
 
