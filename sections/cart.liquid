@@ -1,11 +1,11 @@
 {{ "cart.css" | asset_url | stylesheet_tag }}
-
-<div class="cart__items-page"  data-ajax-cart-section>
-
-<form action="{{ routes.cart_url }}" method="post">
+<form action="{{ routes.cart_url }}" method="post" class="cart" data-ajax-cart-section > 
 {% unless cart == empty %}
-  <div class="cart__top" >
+  <div class="cart__top">
     <p>My cart</p>
+    <button class="no-bg" data-ajax-cart-toggle-class-button="cart-active">
+      {% render 'icon-close-cart' %}
+    </button>
   </div>
  <div class="cart_items_container">
   {% for item in cart.items %}
@@ -20,7 +20,7 @@
         <p>{{  item.variant.title | split: '/' | first }}</p>
         <p>{{  item.variant.title | split: '/' | last }}</p>
       </div>
-      <a class="cart_item_counter" href="{{ item.url_to_remove }}">{% render 'icon-close' %}</a>
+      <a class="cart_item_counter" href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0">{% render 'icon-close' %}</a>
     </div>
      <div class="cart_item_counter-container">
       <a
@@ -61,6 +61,9 @@
     <div class="cart_empty">
       <div class="cart__top">
         <p>My cart</p>
+        <button class="no-bg" data-ajax-cart-toggle-class-button="cart-active">
+          {% render 'icon-close-cart' %}
+        </button>
       </div>
      <div class="cart_empty_ontainer">
       <p class="cart_empty_title">Your Cart is Empty</p>
@@ -68,5 +71,9 @@
      </div>
     </div>
   {% endunless %}
-</form>
-</div>
+  </form>
+ 
+  
+  <div data-ajax-cart-toggle-class-button="cart-active" class="overlay"></div>
+
+{% schema %} { "name": "AJAX cart" } {% endschema %}

@@ -1,0 +1,18 @@
+{%- style -%}
+  .option-Color-radio:checked::after{
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: green;
+    content: '';
+    display: inline-block;
+    visibility: visible; 
+    border: 2px solid white;
+    box-shadow: 0px 0px 0px 1px gray;
+  }
+{%- endstyle %}
+
+<input class="option-{{option.name}}-radio" {% if forloop.index0 == 0 %} checked {% endif %} value="{{value}}" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >

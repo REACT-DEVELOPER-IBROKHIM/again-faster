@@ -172,3 +172,34 @@ header{
   opacity: 1 !important;
 }
 
+.no-bg{
+  background-color: transparent  ;
+  border: none;
+}
+
+form[action="/cart/add"].js-ajax-cart-form-in-progress[type="submit"]{
+  opacity: .5;
+}
+
+body.js-ajax-cart-request-in-progress .cart__item{
+  opacity: .5;
+}
+
+body.js-ajax-cart-empty .subtotal{
+  display: none !important;
+}
+
+body.cart-active .cart{
+  transition: right ease-in 0.4s;
+  right: 0;
+}
+
+body.cart-active .overlay{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background-color: #00000062;
+}

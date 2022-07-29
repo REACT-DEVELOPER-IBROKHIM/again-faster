@@ -12,12 +12,12 @@
 }
 
 .product_media-wrapper{
-  width: 50%;
+  width: 52%;
   height: 900px;
 }
 
 .product_info-form{
-  width: 50%;
+  width: 48%;
   height: 100%;
   overflow-y: hidden;
   padding: 40px 135px 0px 100px;
@@ -35,7 +35,7 @@
 }
 
 .media_item{
-  width: 95%;
+  width: 720px;
   height: 100%;
 }
 
@@ -181,4 +181,9 @@
 
 .product_finance-company > p{
   margin-left: 8px;
+}
+
+.error_message{
+  color: red;
+  padding: 5px 0px;
 }

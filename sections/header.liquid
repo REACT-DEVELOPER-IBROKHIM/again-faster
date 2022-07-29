@@ -5,7 +5,7 @@
     {% assign theme_color = "dark" %}
     {% assign bg = "bg" %}
   {% endif %}
-<header class="{{bg}}">
+<header id="header" class="{{bg}}">
   <p>{{check_url}}</p>
   <div class="header-container ">
     <a class="header-link {{ theme_color }}" href="{{ routes.root_url }}">
@@ -56,13 +56,8 @@
           <a class="control-link {{theme_color}}" href="{{ routes.account_login_url }}" id="customer_login_link">{% render 'icon-user' %}</a>
       {% endif %}
     {% endif %}
-
-    {% if cart %}
-      {% if routes.cart_url %}
-        <a class="control-link {{theme_color}}" href="{{ routes.cart_url }}">{% render 'icon-bag' %}</a>
-      {% endif %}
-    {% endif %}
-   </div>
+    <a href="{{ routes.cart_url }}" id="cart-btn" data-ajax-cart-toggle-class-button="cart-active" class="control-link no-bg {{theme_color}}" href="{{ routes.cart_url }}">{% render 'icon-bag' %}</a>
+   </div> 
   </div>
 </header>
 

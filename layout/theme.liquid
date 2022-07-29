@@ -16,7 +16,6 @@
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
-
     {% render 'meta-tags' %}
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <title>
@@ -45,11 +44,18 @@
     <div class="header-announcementbar">
       {% section 'announcement-bar' %}
       {% section 'header' %}
+      {% section 'cart' %}
     </div>
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-    <p>{{templateType}}</p>
-    {% section 'footer' %}
+    {% section 'footer' %} 
+    <script type="application/json" data-ajax-cart-initial-state >
+      {{ cart | json }} 
+    </script> 
+     
+    <script type="module"> 
+      import '{{ "liquid-ajax-cart-v1.0.0.js" | asset_url }}';
+    </script>
   </body>
 </html>

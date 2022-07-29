@@ -30,7 +30,7 @@
         </div>
       <div class="swiper-pagination"></div>
       </div>
-    </div>
+    </div> 
     <div class="product_info-form">
       <div class="product_info">
         {% form 'product', product, id: "product-form", novalidate: 'novalidate'  %}
@@ -55,29 +55,30 @@
             <p>{{ product.metafields.finance_company_text.finance_company_text }}</p>
           </div>
           <p class="product_info-desc">{{ product.description }}</p>
-
+          {{ product.options_with_values  }}
           <div class="product_variants_container">
             {% unless product.has_only_default_variant %}
                 <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                     {% for option in product.options_with_values %}
                         <label for="Option-{{section.id}}-{{forloop.index0 }}" class="option__label">{{ option.name }}</label>
-
                         <div class="product_variants">
                           {% for value in option.values %}
+                              
                            <div>
-                            <input class="option-{{option.name}}-radio" {% if forloop.index0 == 0 %} checked {% endif %} value="{{value}}" type="radio" name="option-{{option.name}}" id="option-{{option.name}}-{{ forloop.index0 }}" >
-                            <label class="option-{{option.name}}-label"  for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
+                              {% render 'color-swatch', option: option, value: value, forloop: forloop %}
+                              <label class="option-{{option.name}}-label"  for="option-{{option.name}}-{{ forloop.index0 }}">{{value | escape}}</label>
                            </div>
                           {% endfor %} 
-                        </div>
+                        </div> 
                         <script type="application/json">
                           {{ product.variants | json }}
                         </script>
+                       
                     {% endfor %}
                 </variant-selector>  
             {% endunless %}
           </div>
-
+          <p class="error_message" data-ajax-cart-form-error></p>
           {% if product.metafields.custom.free_shipping %}
             <p class="product_features-shipping">Available for Free shipping!</p>
           {% endif %}
