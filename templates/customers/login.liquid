@@ -1,7 +1,7 @@
 {{ 'loginregister.css' | asset_url | stylesheet_tag }}
 
-<div class="loginregister_container">
-    <div class="loginregister_form-wrapper">
+<div class="loginregister_container" x-data="{loginForm: true, pwReset: false }">
+    <div x-show="loginForm" class="loginregister_form-wrapper">
         <h1>Login</h1>
         {% form 'customer_login' %}
           {% if form.errors %}
@@ -17,7 +17,7 @@
               <label class="loginregister_label" for="customer_password">Password</label>
             </div>
           {% endif %}
-          <a href="/account/login#" class="form_forgot-password">Forgot password?</a>
+          <a x-on:click="loginForm = false; pwReset = true" href="#reset" class="form_forgot-password">Forgot password?</a>
           {% if form.errors %}
             <p class="form_error">{{ form.errors | default_errors }}</p>
           {% endif %}
@@ -25,5 +25,24 @@
         {% endform %}
         <p class="loginregister_option-inst">Don’t have an account yet?</p>
         <a href="{{ routes.account_register_url }}" class="loginregister_option-link">Create an account</a>
+    </div>
+    <div x-show="pwReset" class="recovery_password">
+      <div class="loginregister_form-wrapper">
+        <h1>Reset password</h1>
+        {% form 'recover_customer_password' %}
+          {% if form.errors %}
+            {% assign isError = "error_sign" %}
+          {% endif %}
+        <p class="loginregister_option-inst">Enter your email below to receive an email to reset your password.</p>
+          <div class="input_wrapper"> 
+            <input autocomplete="email" required type="text" id="customer_email" name="email" class="customer_input {{isError}}">
+            <label class="loginregister_label" for="customer_email">Email</label>
+          </div>
+          {% if form.errors %}
+            <p class="form_error">{{ form.errors | default_errors }}</p>
+          {% endif %}
+          <button class="loginregister_form-btn" type="submit">Reset password</button>
+        {% endform %}
+    </div>
     </div>
 </div>
