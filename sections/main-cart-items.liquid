@@ -7,7 +7,7 @@
   <div class="cart__top" >
     <p>My cart</p>
   </div>
- <div class="cart_items_container">
+ <div class="cart_items_container"> 
   {% for item in cart.items %}
   <div class="cart__item">
     <img src="{{item.image | img_url: '120x150'}}" alt="">

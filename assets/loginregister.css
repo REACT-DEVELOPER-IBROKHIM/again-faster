@@ -1,0 +1,156 @@
+.loginregister_container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--open-sans);
+  padding: 80px 0px 120px 0px;
+}
+
+.loginregister_form-wrapper{ 
+  width: 442px;
+  height: auto;
+}
+
+.loginregister_form-wrapper > h1{
+  text-align: center;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  
+}
+
+.input_wrapper{
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column-reverse;
+  position: relative;
+  margin: 20px 0px;
+}
+
+
+
+.customer_input{
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-bottom: 1px solid #BEBEBE;
+  background-color: transparent;
+  outline: none;
+}
+
+.customer_input ~ label{
+  position: absolute;
+  top: 30px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 167.5%;
+  transition: ease-out 0.2s;
+}
+ 
+
+.customer_input:focus ~ label,
+.customer_input:valid ~ label{
+  top: 0;
+  transition: ease-out 0.2s;
+}
+
+.customer_input:focus{
+  border-bottom: 1px solid #000;
+}
+
+.form_forgot-password{
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 167.5%;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  text-align: right;
+  margin-top: -12px;
+  margin-bottom: 40px;
+}
+
+.loginregister_form-btn{
+  width: 100%;
+  height: 43px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.175em;
+  text-transform: uppercase;
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.loginregister_option-inst{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 167.5%;
+  text-align: center;
+  color: #000000;
+  margin-top: 40px;
+}
+
+.loginregister_option-link{
+  width: 100%;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.175em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000;
+  margin-top: 40px;
+}
+
+.errors > ul{
+  list-style: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 167.5%;
+  color: #DA0000;
+  margin-bottom: 8px;
+}
+
+.input_wrapper-sibling{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  column-gap: 16px;
+}
+
+.input_wrapper-sibling > div{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 60px;
+}
+
+.input_wrapper-sibling > div input{
+  width: 100%;
+}
+
+.input_wrapper-sibling > div input ~ label{
+  left: 0;
+}
+
+.error_sign{
+  border-bottom: 1px solid red;
+}
