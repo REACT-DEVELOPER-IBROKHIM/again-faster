@@ -1,0 +1,12 @@
+{
+  "sections" : {
+    "template" : {
+      "type" : "template-orders"
+    },
+    "account_sidebar" : {
+      "type" : "account-sidebar"
+    }
+  }, 
+  "wrapper" : "div.account_wrapper",
+  "order" : ["account_sidebar", "template"]
+}

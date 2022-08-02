@@ -1,0 +1,67 @@
+{{ 'orders.css'  | asset_url | stylesheet_tag }}
+
+<div class="orders">
+  <p class="template_title">Order Details</p>
+  <p class="order_number">{{ order.name }}</p>
+
+  <table class="order_table">
+    <thead>
+      <tr>
+        <th class="order_table_headers">Product</th>
+        <th class="order_table_headers">Quantity</th>
+        <th class="order_table_headers">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order_items in order.line_items %}
+        <tr class="order_table_row">
+          <td class="order_main_cell order_cell"> {% if order_items.image %}
+            <img src="{{ order_items.image | img_url: '120x150' }}" alt="{{ order_items.image.alt }}">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: "order_image" }}
+          {% endif %}  <div>
+            <b>{{ order_items.product.title }}</b>
+            <br>
+            {% for option in order_items.options_with_values %}
+            <p>{{ option.value }}</p>
+          </div>
+          
+          {% endfor %}
+        </td>
+          <td class="order_cell">
+            {{ order_items.quantity }}
+          </td>
+          <td class="order_cell">
+            {{ order_items.final_line_price | money }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="order_summary">
+    <div class="order_summary_info">
+      <div class="summary_item"> <p>Total</p> <p> {{ order.subtotal_price | money }}</p> </div>
+      <div class="summary_item"> <p>Shipping</p> <p> {% if order.product.metafields.custom.free_shipping %}
+        FREE
+        {% else %}
+          PAID
+      {% endif %} </p> </div>
+      <div class="summary_item"> <p>Tax</p> <p>{{ order.tax_price | money }}</p> </div>
+      <div class="summary_item"> <p>Subtotal</p> <p>{{ order.total_price | money }}</p> </div>
+    </div>
+  </div>
+  <div class="order_addresses">
+    <div>
+      <b>Billing address</b>
+      <p class="payment_status">Payment status: {{ order.financial_status_label }}</p>
+
+      {{ order.billing_address | format_address }}
+    </div>
+    <div>
+      <b>Shipping address</b>
+      <p class="payment_status">Payment status: {{ order.financial_status_label }}</p>
+
+      {{ order.shipping_address | format_address }}
+    </div>
+  </div>
+</div>

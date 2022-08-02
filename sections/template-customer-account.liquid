@@ -1,0 +1,37 @@
+{{ 'account-template.css' | asset_url | stylesheet_tag }}
+
+<div class="account_template">
+   <p class="template_title">Order Details</p>
+   {% assign number_of_orders = customer.orders | size %}
+   {% if number_of_orders > 0 %}
+    <table>
+      <thead>
+        <tr class="order_rows">
+          <th class="order_headers">Order Number</th>
+          <th class="order_headers">Date</th>
+          <th class="order_headers">Status</th>
+          <th class="order_headers">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% paginate customer.orders by 5 %}
+          {% for order_item in customer.orders %}
+            <tr  class="order_rows">
+              <td class="order_cells">{{ order_item.name | link_to: order_item.customer_url }}</td>
+              <td class="order_cells">{{ order_item.created_at | date: "%d.%m.%Y" }}</td>
+              <td class="order_cells">{{ order_item.fulfillment_status_label }}</td>
+              <td class="order_cells">{{ order_item.total_price | money }}</td>
+            </tr>
+          {% endfor %}
+        {% endpaginate %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class="order_empty">
+        <p>No orders</p>
+      </div>
+   {% endif %}
+   <p class="template_title">Address book</p>
+    {{ customer.default_address | format_address }}
+    <a class="address_view_link" href="{{ routes.account_addresses_url }}">View Addresses</a>
+</div>

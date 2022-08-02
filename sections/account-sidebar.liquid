@@ -1,0 +1,10 @@
+{{ 'account-sidebar.css' | asset_url | stylesheet_tag }}
+
+<div class="account_sidebar">
+  <p class="sidebar_title">My account</p>
+  <ul class="sidebar_collection">
+    <li class="sidebar_item"> <a href="{{ routes.account_url }}">Account Overview</a> </li>
+    <li class="sidebar_item"> <a href="#">Order Details</a> </li>
+    <li class="sidebar_item"> <a href="{{ routes.account_addresses_url }}">Address Book</a> </li>
+  </ul>
+</div>

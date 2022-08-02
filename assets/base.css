@@ -203,3 +203,16 @@ body.cart-active .overlay{
   z-index: 9;
   background-color: #00000062;
 }
+
+.account_wrapper{
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+
+.account_wrapper > div:last-child{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}

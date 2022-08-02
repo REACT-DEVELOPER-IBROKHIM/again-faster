@@ -1,0 +1,30 @@
+.account_sidebar{
+  width: 368px;
+  height: 100%;
+  padding: 85px 34px;
+  background-color: #fbfbfb;
+  font-family: var(--open-sans);
+}
+
+.sidebar_title{
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--open-sans);
+  margin-bottom: 40px;
+}
+
+.sidebar_collection{
+  list-style-type: none;
+}
+
+.sidebar_collection > li{
+  margin-top: 11px;
+}
+
+.sidebar_collection > li >  a{
+  text-decoration: none;
+  color: #000;
+}

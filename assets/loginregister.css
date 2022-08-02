@@ -88,6 +88,7 @@
   background-color: #000;
   color: #fff;
   border: none;
+  cursor: pointer;
 }
 
 .loginregister_option-inst{
@@ -116,6 +117,7 @@
   color: #000;
   border: 1px solid #000;
   margin-top: 40px;
+  cursor: pointer;
 }
 
 .errors > ul{
@@ -153,4 +155,101 @@
 
 .error_sign{
   border-bottom: 1px solid red;
+}
+
+.address_template{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  padding: 78px 125px;
+  font-family: var(--open-sans);
+}
+
+.address_template-page{
+  display: flex;
+  width: 100%;
+}
+
+.address-container{
+  width: 442px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.address-container > form{
+  width: 100%;
+}
+
+.address-btn{
+  margin-top: 20px;
+}
+
+.address_title{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 168%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.address{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_actions{
+  margin-top: 16px;
+}
+
+.address > div > b{
+  padding-bottom: 32px;
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 168%;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+.address > div > p:nth-child(2){
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 167.5%;
+  margin-bottom: 7px;
+}
+
+.address_actions > button{
+  background-color: transparent;
+  border: none;
+}
+
+.address_wrapper{
+  width: 100%;
+}
+
+.address_wrapper > button{
+  max-width: 213px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.address_submission{
+  display: flex;
+  align-items: center;
+}
+
+.address_submission > button{
+  width: 213px;
+}
+
+.address_submission >a {
+  margin-top: 10px;
+  display: block;
+  color: #000;
+  margin-left: 16px;
 }
